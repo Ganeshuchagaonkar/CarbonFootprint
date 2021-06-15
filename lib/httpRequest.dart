@@ -14,38 +14,37 @@ class HttpRequest extends StatefulWidget {
 class _HttpRequestState extends State<HttpRequest> {
   double co2_val = 0.0;
   double temp_val = 0.0;
-  int val1;
-  int val2;
+
   @override
   void initState() {
     super.initState();
     setUpTimedFetch();
   }
+
   setUpTimedFetch() {
+    // fetchAlbum();
     Timer.periodic(Duration(seconds: 2), (timer) {
-     
+
         fetchAlbum();
-     
+
     });
   }
 
   void fetchAlbum() async {
-    var data=jsonEncode({"Location":"belgavi,karnataka"});
-    final response = await http.post(Uri.http("192.168.43.242:5000", "getSensorValues"),body: data,
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
+    var data = jsonEncode({"Location": "belgaum,karnataka"});
+    final response = await http.post(
+      Uri.http("192.168.43.187:5000", "getSensorValues"),
+      body: data,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
     );
 
     final responseJson = jsonDecode(response.body);
     print(responseJson);
-    val1 = responseJson['result']['co2Value'];
-    val2 = responseJson['result']['tempValue'];
-    print(val1);
-    print(val2);
     setState(() {
-      co2_val = val1.toDouble();
-      temp_val = val2.toDouble();
+      co2_val = responseJson['result']['co2Value'].toDouble();
+      temp_val = responseJson['result']['tempValue'].toDouble();
     });
   }
 
@@ -54,12 +53,40 @@ class _HttpRequestState extends State<HttpRequest> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Co2 Tracker ',
+          'DashBoard ',
           style: TextStyle(
               color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.redAccent,
         centerTitle: true,
+      ),
+      drawer: new Drawer(
+        child: ListView(
+          children: [
+            SizedBox(height: 60),
+            Divider(),
+            ListTile(
+              title: Text("DashBoard"),
+              onTap: () {
+                Navigator.pushNamed(context, '/DashBoard');
+              },
+            ),
+            Divider(),
+            ListTile(
+                title: Text("View Graph"),
+                onTap: () {
+                  Navigator.pushNamed(context, '/ViewGraph');
+                }),
+            Divider(),
+            ListTile(
+              title: Text("Cancel"),
+              trailing: Icon(Icons.cancel),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
       ),
       body: new Container(
         padding: const EdgeInsets.all(20),
@@ -81,7 +108,6 @@ class _HttpRequestState extends State<HttpRequest> {
                     color: Colors.grey[50],
                     boxShadow: <BoxShadow>[
                       BoxShadow(
-                          // color: Colors.orange.shade200,
                           color: Colors.black12.withOpacity(0.6),
                           offset: Offset(3, 7),
                           blurRadius: 12.0,
@@ -98,7 +124,6 @@ class _HttpRequestState extends State<HttpRequest> {
                       RadialAxis(
                           minimum: 100,
                           maximum: 2000,
-                         
                           axisLineStyle: AxisLineStyle(
                               cornerStyle: CornerStyle.bothFlat,
                               color: Colors.black12,
@@ -132,10 +157,10 @@ class _HttpRequestState extends State<HttpRequest> {
                           annotations: <GaugeAnnotation>[
                             GaugeAnnotation(
                                 widget: Container(
-                                    child:  Text('$co2_val ppm',
+                                    child: Text('$co2_val ppm',
                                         style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold))),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600))),
                                 angle: 90,
                                 positionFactor: 0.8)
                           ])
@@ -156,7 +181,6 @@ class _HttpRequestState extends State<HttpRequest> {
                   color: Colors.grey[50],
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        // color: Colors.orange.shade200,
                         color: Colors.black12.withOpacity(0.6),
                         offset: Offset(3, 7),
                         blurRadius: 12.0,
@@ -212,7 +236,7 @@ class _HttpRequestState extends State<HttpRequest> {
                         widget: Text(
                           '$temp_val°C',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600),
+                              fontSize: 18, fontWeight: FontWeight.w600),
                         ),
                         positionFactor: 0.8,
                         angle: 90)

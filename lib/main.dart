@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:co2tracker/httpRequest.dart';
 import 'package:co2tracker/Login.dart';
 import 'package:flutter/material.dart';
+import'package:co2tracker/GraphPage.dart';
 
 
 void main() {
@@ -15,6 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
+        routes: {
+          '/DashBoard':(context)=>HttpRequest(),
+          '/ViewGraph':(context)=>GraphPage()
+        },
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -31,7 +36,7 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HttpRequest());
+        home:  HttpRequest());
   }
 }
 

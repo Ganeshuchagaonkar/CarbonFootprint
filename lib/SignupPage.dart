@@ -117,10 +117,7 @@ class _SignupPageState extends State<SignupPage> {
                   spreadRadius: 2)
             ],
             color: Colors.redAccent
-            // gradient: LinearGradient(
-            //     begin: Alignment.centerLeft,
-            //     end: Alignment.centerRight,
-            //     colors: [Color(0xfffbb448), Color(0xfff7892b)])
+           
             ),
         child: Text(
           'Sign up',
@@ -224,15 +221,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
               TextFormField(
                 validator: validateMobile,
-                // validator: (value) {
-                //   if (value.isEmpty) {
-                //     return "This filed is required";
-                //   }
-                //   if (value.length!=10) {
-                //     return "";
-                //   }
-                //   return null;
-                // },
+                
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(

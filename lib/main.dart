@@ -21,22 +21,13 @@ class MyApp extends StatelessWidget {
           '/ViewGraph':(context)=>GraphPage()
         },
         theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
+         
           // is not restarted.
           primarySwatch: Colors.blue,
-          // This makes the visual density adapt to the platform that you run
-          // the app on. For desktop platforms, the controls will be smaller and
-          // closer together (more dense) than on mobile platforms.
+          
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:  HttpRequest());
+        home:  Splashscreen());
   }
 }
 
@@ -70,25 +61,19 @@ class _SplashscreenState extends State<Splashscreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      //     Container(
-                      //       decoration: BoxDecoration(
-                      //         shape:BoxShape.circle,
-                      //       ),
-                      //       child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQokILUWOSE0fcDbXaPSqgjdwoGZdOmAr9J-Q&usqp=CAU"),
-
-                      //     )
+                      //   
                       CircleAvatar(
                           backgroundColor: Colors.white,
                           radius: 80.0,
-                          child: Image.network(
-                            "",
+                          child: Image.asset(
+                            "images/logo.png",
                           )
-                          // Icon(Icons.shopping_cart),
+                          
                           ),
                       SizedBox(
                         height: 20.0,
                       ),
-                      Text("Co2Tracker",style: TextStyle(fontSize:30.0,color:Colors.black,fontWeight:FontWeight.bold),)
+                      Text("Carbon Footprint",style: TextStyle(fontSize:30.0,color:Colors.white,fontWeight:FontWeight.bold),)
                     ],
                   ),
                 ),
@@ -98,7 +83,7 @@ class _SplashscreenState extends State<Splashscreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    CircularProgressIndicator(),
+                    CircularProgressIndicator(   valueColor:AlwaysStoppedAnimation<Color>(Colors.white),),
                     Padding(padding:EdgeInsets.only(top:20.0)),
                     Text("Guided by Dr.Kuldeep Sambrekar ",style:TextStyle(
                       color:Colors.black,

@@ -12,7 +12,9 @@ class HttpRequest extends StatefulWidget {
 }
 
 class _HttpRequestState extends State<HttpRequest> {
+  Timer _timer;
   double co2_val = 0.0;
+
   double temp_val = 0.0;
 
   @override
@@ -20,10 +22,15 @@ class _HttpRequestState extends State<HttpRequest> {
     super.initState();
     setUpTimedFetch();
   }
+  @override
+  void dispose(){
+    _timer.cancel();
+    super.dispose();
+  }
 
   setUpTimedFetch() {
-    // fetchAlbum();
-    Timer.periodic(Duration(seconds: 2), (timer) {
+  
+   _timer= Timer.periodic(Duration(seconds: 2), (timer) {
 
         fetchAlbum();
 
@@ -76,6 +83,7 @@ class _HttpRequestState extends State<HttpRequest> {
                 title: Text("View Graph"),
                 onTap: () {
                   Navigator.pushNamed(context, '/ViewGraph');
+                  dispose();
                 }),
             Divider(),
             ListTile(
@@ -90,13 +98,13 @@ class _HttpRequestState extends State<HttpRequest> {
       ),
       body: new Container(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child:SingleChildScrollView(child: Column(
           children: [
             SizedBox(height: 20),
 
             // Co2 Container
             Text(
-              "Co2 sensore Readings",
+              "Co2 sensor Readings",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -115,10 +123,7 @@ class _HttpRequestState extends State<HttpRequest> {
                     ]),
                 child: SfRadialGauge(
 
-                    // title: GaugeTitle(
-                    //     text: 'Co2 Range',
-                    //     textStyle: const TextStyle(
-                    //         fontSize: 20.0, fontWeight: FontWeight.bold)),
+                    
 
                     axes: <RadialAxis>[
                       RadialAxis(
@@ -170,7 +175,7 @@ class _HttpRequestState extends State<HttpRequest> {
 // temperature Container
 
             Text(
-              "Temperature sensore Readings",
+              "Temperature sensor Readings",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
@@ -246,6 +251,7 @@ class _HttpRequestState extends State<HttpRequest> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

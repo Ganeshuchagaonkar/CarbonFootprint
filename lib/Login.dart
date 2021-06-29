@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                       radius: 60.0,
                       // backgroundImage: AssetImage('images/Co2logo.png',),
                       
-                      child: Image.asset('images/Co2logo.png',scale: 1,),
+                      child: Image.asset('images/logo.png',scale: 1,),
                      
                     ),
                     SizedBox(

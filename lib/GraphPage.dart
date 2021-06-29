@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-
 import 'package:intl/intl.dart';
 
 class GraphPage extends StatefulWidget {
@@ -63,12 +62,7 @@ class _GraphPageState extends State<GraphPage> {
     });
 
     createData();
-    print(overall_min);
-    print(overall_max);
-    print(todays_max);
-    print(todays_min);
-    print(maxdate);
-    print(mindate);
+ 
   }
 
   void createData() {
@@ -170,9 +164,7 @@ class _GraphPageState extends State<GraphPage> {
                   primaryXAxis: CategoryAxis(),
                   // Chart title
                   title: ChartTitle(text: 'Co2 values vs time'),
-                  // Enable legend
-                  // legend: Legend(isVisible: true),
-                  // Enable tooltip
+                  
                   tooltipBehavior: TooltipBehavior(enable: true),
                   series: <ChartSeries<_Co2Data, String>>[
                     LineSeries<_Co2Data, String>(

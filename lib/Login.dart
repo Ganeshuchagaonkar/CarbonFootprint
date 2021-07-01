@@ -10,8 +10,7 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-//  final GlobalKey<FormState> formKeylog = GlobalKey<FormState>();
-// final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 class _LoginPageState extends State<LoginPage> {
   
 
@@ -37,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     
     );
     final finalresponse= jsonDecode(res.body);
-    print(finalresponse['result']['status']);
+ 
       if(finalresponse['result']['status']==1){
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -72,8 +71,7 @@ class _LoginPageState extends State<LoginPage> {
         if(formKeylog.currentState.validate()){
         username =_userNameController.text,
         password= _passController.text,
-        print(username),
-        print(password),
+      
         attemptLogIn(username, password),
         }
         else{
@@ -97,10 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   spreadRadius: 2)
             ],
             color: Colors.redAccent
-            // gradient: LinearGradient(
-            //     begin: Alignment.centerLeft,
-            //     end: Alignment.centerRight,
-            //     colors: [Color(0xb71c1c), Color(0xfff7892b)])
+            
                 ),
         child: Text(
           'Login',
@@ -116,10 +111,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // key: _scaffoldKey,
-      // appBar: AppBar(
-      //   title: Text("Login"),
-      // ),
+       
       body: new Container(
           padding:
               EdgeInsets.only(top: 120, right: 30.0, left: 30.0, bottom: 60.0),
@@ -191,18 +183,10 @@ class _LoginPageState extends State<LoginPage> {
                         prefixIcon: Icon(Icons.lock),
                         suffixIcon: Icon(Icons.visibility_off),
                          border: InputBorder.none,
-                        // border: InputBorder.none,
+                        
                         fillColor: Color(0xfff3f3f4),
                         filled: true,
-                        // focusedBorder: OutlineInputBorder(
-                        //     borderRadius: BorderRadius.all(Radius.circular(12)),
-                        //     borderSide: BorderSide(color: Colors.blue)),
-                        // enabledBorder: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                        //   borderSide: BorderSide(
-                        //     color: Colors.black,
-                        //   ),
-                        // ),
+                       
                         hintText: 'Password',
                         labelText: 'Password',
                       ),

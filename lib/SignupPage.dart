@@ -39,7 +39,7 @@ class _SignupPageState extends State<SignupPage> {
     );
 
     final finalresponse = jsonDecode(response.body);
-    print(finalresponse);
+  
     if (finalresponse['result']['status'] == 1) {
       print(finalresponse['result']['status']);
       ScaffoldMessenger.of(context).showSnackBar(
